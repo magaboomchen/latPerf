@@ -5,6 +5,7 @@
 *.slo
 *.lo
 *.o
+*.cpp.o
 *.obj
 
 # Precompiled Headers
@@ -30,3 +31,31 @@
 *.exe
 *.out
 *.app
+*.pyc
+
+# Data
+*.pcap
+
+# Log
+log/**
+*.log
+*.txt
+*.INFO
+*.ERROR
+
+# Directories
+log/**
+tmp/**
+pid/**
+bash_backup/**
+backup/**
+build/**
+profile/**
+autoProfiler/log/**
+
+# Backup Files
+*~
+
+# Executable Files
+main
+latPerf
