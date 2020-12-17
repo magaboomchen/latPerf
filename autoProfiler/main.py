@@ -80,5 +80,5 @@ if __name__ == "__main__":
     # lbProfile(ap)
 
     setKernelNIC(ap)
-    # natProfile(ap)
-    vpnProfile(ap)
+    natProfile(ap)
+    # vpnProfile(ap)
