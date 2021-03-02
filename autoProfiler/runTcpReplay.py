@@ -1,6 +1,11 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+'''
+tcpReplay raw usage:
+sudo tcpreplay -i enp5s0f0 --loop 10 -K --multiplier=1000 ./22.pcap 
+'''
+
 from sam.base.shellProcessor import ShellProcessor
 from sam.base.loggerConfigurator import LoggerConfigurator
 from sam.base.argParser import *
@@ -43,4 +48,3 @@ if __name__ == "__main__":
         "sudo tcpreplay -i " + str(interface) \
             + " -K --multiplier=" + str(multiplier) + netmap \
             + " --loop 500 " + pcapFilePath)
-    # sudo tcpreplay -i enp5s0f0 --loop 10 -K --multiplier=1000 ./22.pcap 

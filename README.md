@@ -50,7 +50,7 @@ sudo ./latPerf -mode latency -i enp5s0f0 -sptp ./pktTemplate/sender_CLASSIFIER.p
 
 start throughput profiling
 ```
-sudo ./latPerf -mode throughput -i enp5s0f0 -sptp ./pktTemplate/sender_CLASSIFIER.pcap -rptp ./pktTemplate/receiver_CLASSIFIER.pcap -d 2 -pps 5 -o ./output.txt
+sudo ./latPerf -mode throughput -i enp5s0f0 -sptp ./pktTemplate/sender_CLASSIFIER.pcap -rptp ./pktTemplate/receiver_CLASSIFIER.pcap -gra 250 -d 2 -pps 5 -o ./output.txt
 ```
 
 

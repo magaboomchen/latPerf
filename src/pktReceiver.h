@@ -75,8 +75,5 @@ class PktReceiver{
 
 static void packetHandler(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_char *packet);
 static void packetHandlerForThroughput(u_char *userData, const struct pcap_pkthdr *pkthdr, const u_char *packet);
-static long long getCurrentTimeInMillisecondUnit(void);
-static bool canRecordThroughput(long long currentTimePoint, long long lastTimePoint);
-static struct ThroughputDataPoint getThroughputDataPoint(long long currentTimePoint, long long byteCount);
 
 #endif

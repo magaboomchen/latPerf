@@ -126,18 +126,6 @@ static void packetHandlerForThroughput(u_char *userData,
     BYTE_COUNT += pkthdr->len;
 }
 
-static bool canRecordThroughput(long long currentTimePoint, long long lastTimePoint){
-    long long elapse = currentTimePoint - lastTimePoint;
-    return elapse > FLAGS_gra;
-}
-
-static struct ThroughputDataPoint getThroughputDataPoint(long long currentTimePoint, long long byteCount){
-    float throughput = (byteCount / 1000.0 / 1000.0) / (FLAGS_gra / 1000.0);
-    struct ThroughputDataPoint throughputDataPoint = {currentTimePoint:currentTimePoint, throughtput:throughput};
-    LOG(INFO) << "throughput:" << throughput << "Mbps";
-    return throughputDataPoint;
-}
-
 void PktReceiver::stopListen(void){
     pcap_breakloop(descr);
 }
@@ -177,14 +165,14 @@ void PktReceiver::logThroughputDataPoints(void){
 void PktReceiver::recordThroughput(void){
     long long LAST_PKT_COUNT = 0;
     long long LAST_BYTE_COUNT = 0;
-    long long timePoint = 0;
+    float timePoint = 0;
     while(!receiverQuitFlag){
-        long long elapse = FLAGS_gra/1000.0;    // unit: seconds
-        sleep(elapse);
+        float elapse = FLAGS_gra/1000.0;    // unit: seconds
+        usleep(elapse * 1000.0 * 1000.0);
         timePoint += elapse * 1000.0;
         long long deltaPktCount = PKT_COUNT - LAST_PKT_COUNT;
         long long deltaByteCount = BYTE_COUNT - LAST_BYTE_COUNT;
-        float throughput = (deltaByteCount /1000.0 /1000.0)/elapse;
+        float throughput = (deltaByteCount * 8 /1000.0 /1000.0)/elapse;
         long long pps = deltaPktCount / elapse;
         struct ThroughputDataPoint tdp = {currentTimePoint:timePoint,
                                             throughtput:throughput,
