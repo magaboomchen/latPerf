@@ -43,6 +43,18 @@ python ./autoProfiler.py
 sudo ./latPerf -i enp5s0f0 -sptp ./pktTemplate/senderSFF.pcap -rptp ./pktTemplate/receiverSFF.pcap -d 2 -pps 5 -o ./output.txt
 ```
 
+start latency profiling
+```
+sudo ./latPerf -mode latency -i enp5s0f0 -sptp ./pktTemplate/sender_CLASSIFIER.pcap -rptp ./pktTemplate/receiver_CLASSIFIER.pcap -d 2 -pps 5 -o ./output.txt
+```
+
+start throughput profiling
+```
+sudo ./latPerf -mode throughput -i enp5s0f0 -sptp ./pktTemplate/sender_CLASSIFIER.pcap -rptp ./pktTemplate/receiver_CLASSIFIER.pcap -d 2 -pps 5 -o ./output.txt
+```
+
+
+
 ## Output file format
 packet e2e latency, e.g.:
 ```

@@ -39,7 +39,6 @@
 # Log
 log/**
 *.log
-*.txt
 *.INFO
 *.ERROR
 

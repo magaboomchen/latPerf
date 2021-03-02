@@ -22,10 +22,18 @@
 
 using namespace std;
 
+DECLARE_string(mode);
 
 void *receiverThread(void *arg){
     ReceiverThreadArg rta = *(ReceiverThreadArg *)arg;
     PktReceiver &pr = rta.pr;
     pr.setBPF(rta.totalBPF);
-    pr.startListen();
+    if(FLAGS_mode == "latency"){
+        pr.startListen();
+    }else if(FLAGS_mode == "throughput"){
+        pr.startThroughputListen();
+    }else{
+        throw std::invalid_argument("Unknown profiling mode.");
+    }
+
 }

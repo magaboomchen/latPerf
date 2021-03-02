@@ -22,6 +22,8 @@ static bool ValidateString(const char *flagname, const std::string& value){
     return true;
 }
 
+DEFINE_string(mode, "latency", "profiler mode: latency or throughput");
+DEFINE_validator(mode, &ValidateString);
 DEFINE_string(i, "none", "network interface card");
 DEFINE_validator(i, &ValidateString);
 DEFINE_string(sptp, "none", "sender packet templage pcap file");
@@ -32,5 +34,7 @@ DEFINE_int32(d, 10, "duration");
 DEFINE_validator(d, &ValidateNum);
 DEFINE_int32(pps, 1000, "packer per seconds");
 DEFINE_validator(pps, &ValidateNum);
+DEFINE_int32(gra, 1000, "granularity unit: ms");
+DEFINE_validator(gra, &ValidateNum);
 DEFINE_string(o, "none", "output file");
 DEFINE_validator(o, &ValidateString);

@@ -122,6 +122,7 @@ class AutoProfiler(object):
             netmap = " "
         self.sp.runPythonScript("./runTcpReplay.py -m " + str(multiplier) \
             + " -i " + self.tcpreplayInterface + netmap + " -f " + self.pcapFilePath)
+        # ./runTcpReplay.py -m 1 -i enp5s0f0 -f ./22.pcap
 
     def _isTcpReplayRun(self):
         tcpreplayStatus = self.sp.isProcessRun("tcpreplay")

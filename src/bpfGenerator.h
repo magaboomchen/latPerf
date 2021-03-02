@@ -8,6 +8,8 @@
 #include "global.h"
 #include "pktTemplates.h"
 
+#ifndef BPFGEN_H
+#define BPFGEN_H
 
 /*
 bpfGen: generate bpf
@@ -20,3 +22,5 @@ class BPFGenerator{
     private:
         string charArray2Hex(const u_char * array, int num);
 };
+
+#endif

@@ -13,5 +13,8 @@ using namespace std;
 #define MAX_PKT_ID 65536/8*65536 // ignore flags in ip header
 
 typedef int32_t int32;
+extern long long PKT_COUNT;
+extern long long BYTE_COUNT;
+extern bool receiverQuitFlag;
 
 #endif

@@ -39,4 +39,8 @@ if __name__ == "__main__":
         netmap = " --netmap "
     else:
         netmap = " "
-    sp.runShellCommand("sudo tcpreplay -i " + str(interface) + " -K --multiplier=" + str(multiplier) + netmap + " --loop 500 " + pcapFilePath)
+    sp.runShellCommand(
+        "sudo tcpreplay -i " + str(interface) \
+            + " -K --multiplier=" + str(multiplier) + netmap \
+            + " --loop 500 " + pcapFilePath)
+    # sudo tcpreplay -i enp5s0f0 --loop 10 -K --multiplier=1000 ./22.pcap 
