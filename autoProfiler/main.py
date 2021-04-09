@@ -71,14 +71,14 @@ def vpnProfile(ap):
 if __name__ == "__main__":
     ap = AutoProfiler()
 
-    # setNetMap(ap)
+    setNetMap(ap)
     # switchProfileWithNetmap(ap)
     # classifierProfile(ap)
     # fwdProfile(ap)
-    # fwProfile(ap)
+    fwProfile(ap)
     # monitorProfile(ap)
     # lbProfile(ap)
 
-    setKernelNIC(ap)
-    natProfile(ap)
+    # setKernelNIC(ap)
+    # natProfile(ap)
     # vpnProfile(ap)

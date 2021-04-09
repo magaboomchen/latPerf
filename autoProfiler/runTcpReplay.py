@@ -1,9 +1,9 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
-from sam.base.shellProcessor import ShellProcessor
-from sam.base.loggerConfigurator import LoggerConfigurator
-from sam.base.argParser import *
+from base.shellProcessor import ShellProcessor
+from base.loggerConfigurator import LoggerConfigurator
+from base.argParser import *
 
 
 class ArgParser(ArgParserBase):
