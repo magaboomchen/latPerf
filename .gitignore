@@ -51,6 +51,7 @@ backup/**
 build/**
 profile/**
 autoProfiler/log/**
+log/**
 
 # Backup Files
 *~

@@ -91,6 +91,22 @@ class Profiler(object):
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     p = Profiler()
     p.highPerformanceProfile()
     # p.lowPerformanceProfile()
+=======
+    ap = AutoProfiler()
+
+    setNetMap(ap)
+    # switchProfileWithNetmap(ap)
+    # classifierProfile(ap)
+    # fwdProfile(ap)
+    fwProfile(ap)
+    # monitorProfile(ap)
+    # lbProfile(ap)
+
+    # setKernelNIC(ap)
+    # natProfile(ap)
+    # vpnProfile(ap)
+>>>>>>> 6ffbaca67589f2ad639f94572edb24b19adfb27e

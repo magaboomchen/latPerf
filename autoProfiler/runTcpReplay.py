@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+<<<<<<< HEAD
 '''
 tcpReplay raw usage:
 sudo tcpreplay -i enp5s0f0 --loop 10 -K --multiplier=1000 ./22.pcap 
@@ -9,6 +10,11 @@ sudo tcpreplay -i enp5s0f0 --loop 10 -K --multiplier=1000 ./22.pcap
 from sam.base.shellProcessor import ShellProcessor
 from sam.base.loggerConfigurator import LoggerConfigurator
 from sam.base.argParser import *
+=======
+from base.shellProcessor import ShellProcessor
+from base.loggerConfigurator import LoggerConfigurator
+from base.argParser import *
+>>>>>>> 6ffbaca67589f2ad639f94572edb24b19adfb27e
 
 
 class ArgParser(ArgParserBase):

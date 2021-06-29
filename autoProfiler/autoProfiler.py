@@ -6,13 +6,13 @@ import os
 
 import numpy as np
 
-from sam.base.shellProcessor import ShellProcessor
-from sam.base.loggerConfigurator import LoggerConfigurator
+from base.shellProcessor import ShellProcessor
+from base.loggerConfigurator import LoggerConfigurator
 from profilePlotter import ProfilePlotter
 
 
 class AutoProfiler(object):
-    def __init__(self):
+    def __init__(self, pcapFilePath = "~/HaoChen/Datasets/imc10DC/22.pcap"):
         logConfigur = LoggerConfigurator('AutoProfiler',
             './log', 'all.log', level='debug')
         self.logger = logConfigur.getLogger()
@@ -20,7 +20,7 @@ class AutoProfiler(object):
         self.latPerfInterface = None
         self.tcpreplayInterface = None
         self.netmapEnable = False
-        self.pcapFilePath = "~/HaoChen/Datasets/imc10DC/22.pcap"
+        self.pcapFilePath = pcapFilePath
         self.xticklabels = range(1, 11, 1)
         self.multiplierRange = range(1, 11, 1)
 
@@ -30,7 +30,6 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_SWITCH.pcap"
         self.rptp = "../pktTemplate/receiver_SWITCH.pcap"
-        self.pcapFilePath = "~/HaoChen/Datasets/imc10DC/22.pcap"
         self._startProfiling()
 
     def startClassifierProfiling(self, latPerfInterface="enp5s0f0"):
@@ -39,7 +38,7 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_CLASSIFIER.pcap"
         self.rptp = "../pktTemplate/receiver_CLASSIFIER.pcap"
-        self.pcapFilePath = "~/HaoChen/Projects/pcapRewrite/pcap/classifierProfiling.pcap"
+        self.pcapFilePath = "../pcapRewrite/pcap/classifierProfiling.pcap"
         self._startProfiling()
 
     def startFWDProfiling(self, latPerfInterface="enp5s0f0"):
@@ -48,7 +47,7 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_FWD.pcap"
         self.rptp = "../pktTemplate/receiver_FWD.pcap"
-        self.pcapFilePath = "~/HaoChen/Projects/pcapRewrite/pcap/fwdProfiling.pcap"
+        self.pcapFilePath = "../pcapRewrite/pcap/fwdProfiling.pcap"
         self._startProfiling()
 
     def startFWProfiling(self, latPerfInterface="enp5s0f0"):
@@ -57,7 +56,7 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_FW.pcap"
         self.rptp = "../pktTemplate/receiver_FW.pcap"
-        self.pcapFilePath = "~/HaoChen/Projects/pcapRewrite/pcap/fwProfiling.pcap"
+        self.pcapFilePath = "../pcapRewrite/pcap/fwProfiling.pcap"
         self._startProfiling()
 
     def startMonitorProfiling(self, latPerfInterface="enp5s0f0"):
@@ -66,7 +65,7 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_MONITOR.pcap"
         self.rptp = "../pktTemplate/receiver_MONITOR.pcap"
-        self.pcapFilePath = "~/HaoChen/Projects/pcapRewrite/pcap/monitorProfiling.pcap"
+        self.pcapFilePath = "../pcapRewrite/pcap/monitorProfiling.pcap"
         self._startProfiling()
 
     def startLBProfiling(self, latPerfInterface="enp5s0f0"):
@@ -75,7 +74,7 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_LB.pcap"
         self.rptp = "../pktTemplate/receiver_LB.pcap"
-        self.pcapFilePath = "~/HaoChen/Projects/pcapRewrite/pcap/lbProfiling.pcap"
+        self.pcapFilePath = "../pcapRewrite/pcap/lbProfiling.pcap"
         self._startProfiling()
 
     def startNATProfiling(self, latPerfInterface="enp5s0f0"):
@@ -84,7 +83,7 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_NAT.pcap"
         self.rptp = "../pktTemplate/receiver_NAT.pcap"
-        self.pcapFilePath = "~/HaoChen/Projects/pcapRewrite/pcap/natProfiling.pcap"
+        self.pcapFilePath = "../pcapRewrite/pcap/natProfiling.pcap"
         self._startProfiling()
 
     def startVPNProfiling(self, latPerfInterface="enp5s0f0"):
@@ -93,7 +92,7 @@ class AutoProfiler(object):
         self._mkdir(self.fileDir)
         self.sptp = "../pktTemplate/sender_VPN.pcap"
         self.rptp = "../pktTemplate/receiver_VPN.pcap"
-        self.pcapFilePath = "~/HaoChen/Projects/pcapRewrite/pcap/vpnProfiling.pcap"
+        self.pcapFilePath = "../pcapRewrite/pcap/vpnProfiling.pcap"
         self._startProfiling()
 
     def _mkdir(self, fileDir):
