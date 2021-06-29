@@ -38,15 +38,8 @@ latPerft sends traffic based on packet template
     -o ${OUTPUT_FILE}
 ```
 
-<<<<<<< HEAD
 * use pktTemplateGen to generate packet template, e.g. generate a packet with IP-in-IP tunnel, etc.
 * Cautions: latPerf sets outter ip header's TOS to 0x18 to distinct measurement packet from background traffic.
-=======
-* Use pktTemplateGen to generate packet template, e.g. generate a packet with IP-in-IP tunnel, etc.
-* Cautions
-    * latPerf sets outter ip header's TOS to 0x03 to distinct measurement packet from background traffic.
-    * the production of ${DURATION} and ${PACKET_PER_SECOND} can't exceed the DRAM size.
->>>>>>> 6ffbaca67589f2ad639f94572edb24b19adfb27e
 
 ## Usage Example
 #### Manual
@@ -107,7 +100,6 @@ Error
 # BUG LIST
 
 # TODO LIST
-<<<<<<< HEAD
 * add tcpreplay's pcap python scripts
     * rewrite function
         * modify src/dst mac
@@ -117,6 +109,3 @@ Error
     * multi-tcpreplay instance
         * same pcap file for N process, each process send 1/N traffic
         * use taskset
-=======
-* Measure N flows' end-to-end latency 
->>>>>>> 6ffbaca67589f2ad639f94572edb24b19adfb27e
