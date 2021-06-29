@@ -58,3 +58,6 @@ autoProfiler/log/**
 # Executable Files
 main
 latPerf
+
+# Exclusion
+!CMakeLists.txt

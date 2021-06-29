@@ -18,7 +18,7 @@ void LatAnalyser::startAnalyse(void){
     for(int i=0;i<buffer.size();i++){
         struct TemplateEntry te = buffer.at(i);
         te.visited = true;
-        if(*(t.getToS(te)) != 0x03){
+        if(*(t.getToS(te)) != 0x18){
             LOG(ERROR) << "Bpf error" ;
             continue;
         }

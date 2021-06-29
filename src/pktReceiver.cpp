@@ -152,16 +152,6 @@ static long long getCurrentTimeInMillisecondUnit(void){
     return ms;
 }
 
-void PktReceiver::logThroughputDataPoints(void){
-    LOG(INFO) << "logThroughputDataPoints:";
-    for(int i=0;i<throughputDataPoints.size();i++){
-        struct ThroughputDataPoint dataPoint = throughputDataPoints.at(i);
-        LOG(INFO)<< "timePoint: " << dataPoint.currentTimePoint
-                    << "ms \t throughput: " << dataPoint.throughtput
-                    << "Mbps \t pkt count: " << dataPoint.pps;
-    }
-}
-
 void PktReceiver::recordThroughput(void){
     long long LAST_PKT_COUNT = 0;
     long long LAST_BYTE_COUNT = 0;
@@ -183,4 +173,15 @@ void PktReceiver::recordThroughput(void){
         LAST_BYTE_COUNT = BYTE_COUNT;
     }
 
+}
+
+void PktReceiver::logThroughputDataPoints(void){
+    LOG(INFO) << "logThroughputDataPoints:";
+    for(int i=0;i<throughputDataPoints.size();i++){
+        struct ThroughputDataPoint dataPoint = throughputDataPoints.at(i);
+        LOG(INFO)<< "timePoint: " << dataPoint.currentTimePoint
+                    << "ms \t throughput: " << dataPoint.throughtput
+                    << "Mbps \t pkt count: " << dataPoint.pps;
+        google::FlushLogFiles(google::INFO);
+    }
 }

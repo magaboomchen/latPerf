@@ -19,6 +19,7 @@ class BPFGenerator{
     public:
         string genBPF(struct TemplateEntry te);
         string combBPF(string BPF1, string BPF2);
+        string getInterfaceMACAdress(string interfaceName);
     private:
         string charArray2Hex(const u_char * array, int num);
 };

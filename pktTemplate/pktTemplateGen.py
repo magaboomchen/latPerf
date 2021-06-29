@@ -25,7 +25,7 @@ NAT = "NAT"
 VPN = "VPN"
 
 # addresses
-TESTER_DATAPATH_MAC = "18:66:da:86:4c:16"
+TESTER_DATAPATH_MAC = "f4:e9:d4:a3:80:80"
 DUT_DATAPATH_MAC = "00:1b:21:c0:8f:98"
 
 TESTER_DATAPATH_IP = "192.168.111.2"
@@ -45,6 +45,7 @@ SFF1_DATAPATH_IP = "2.2.0.38"
 CLASSIFIER_DATAPATH_IP = "2.2.0.36"
 CLASSIFIER_DECAP_DATAPATH_IP = "10.0.1.1"
 
+
 class PktTemplateGenerator(object):
     def __init__(self):
         pass
@@ -62,109 +63,109 @@ class PktTemplateGenerator(object):
         if DUTType == SWITCH:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=DUT_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=DUT_DATAPATH_IP, tos=0x18)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=DUT_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=DUT_DATAPATH_IP, tos=0x18)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / udp /Raw(load=data)
         elif DUTType == CLASSIFIER:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP, tos=3)
+            ip1 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP, tos=0x18)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=DUT_DATAPATH_MAC, dst=TESTER_DATAPATH_MAC)
-            ip1 = IP(src=CLASSIFIER_DATAPATH_IP,dst=FWD_DATAPATH_IP, tos=3)
+            ip1 = IP(src=CLASSIFIER_DATAPATH_IP,dst=FWD_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
         elif DUTType == FWD:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=FWD_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=FWD_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=DUT_DATAPATH_MAC, dst=TESTER_DATAPATH_MAC)
-            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=3)
+            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
         elif DUTType == FW:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=FW_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=FW_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=DUT_DATAPATH_MAC, dst=TESTER_DATAPATH_MAC)
-            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=3)
+            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
         elif DUTType == MONITOR:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=MONITOR_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=MONITOR_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=DUT_DATAPATH_MAC, dst=TESTER_DATAPATH_MAC)
-            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=3)
+            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
         elif DUTType == LB:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=LB_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=LB_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=DUT_DATAPATH_MAC, dst=TESTER_DATAPATH_MAC)
-            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=3)
+            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
         elif DUTType == NAT:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=NAT_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=NAT_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=DUT_DATAPATH_MAC, dst=TESTER_DATAPATH_MAC)
-            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=3)
+            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
         elif DUTType == VPN:
             data = "X" * 22
             ether = Ether(src=TESTER_DATAPATH_MAC, dst=DUT_DATAPATH_MAC)
-            ip1 = IP(src=TESTER_DATAPATH_IP,dst=VPN_DATAPATH_IP, tos=3)
+            ip1 = IP(src=TESTER_DATAPATH_IP,dst=VPN_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             senderTemplate = ether / ip1 / ip2 / udp /Raw(load=data)
 
             data = "X" * 22
             ether = Ether(src=DUT_DATAPATH_MAC, dst=TESTER_DATAPATH_MAC)
-            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=3)
+            ip1 = IP(src=SFF1_DATAPATH_IP,dst=CLASSIFIER_DECAP_DATAPATH_IP, tos=0x18)
             ip2 = IP(src=INNER_SRC_IP,dst=INNER_DST_IP)
             udp = UDP(sport=80,dport=1234)
             recvTemplate = ether / ip1 / ip2 / udp /Raw(load=data)

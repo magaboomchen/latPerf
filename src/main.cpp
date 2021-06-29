@@ -98,6 +98,8 @@ void profileThroughput(void){
 
     // string totalBPF = "ether[12:2] == 0X0800 ";
     string totalBPF = " ";
+    BPFGenerator bpfG;
+    // string totalBPF = " ether src  " + bpfG.getInterfaceMACAdress(FLAGS_i);
 
     PktReceiver pr(FLAGS_i, t);
     pr.setBufferExpSize(FLAGS_d * FLAGS_pps);

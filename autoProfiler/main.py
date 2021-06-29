@@ -1,84 +1,96 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 
+import scapy
+
 from autoProfiler import AutoProfiler
 
 
-def setNetMap(ap):
-    ap.multiplierRange = [
-        40000.0,
-        100000.0,
-        150000.0,
-        170000.0,
-        178000.0,
-        181000.0,
-        184000.0,
-        187000.0,
-        190000.0,
-        200000.0
-    ]
+class Profiler(object):
+    def __init__(self):
+        self.aP = AutoProfiler()
 
-    ap.xticklabels = range(10, 110, 10)
-    ap.tcpreplayInterface ="enp4s0"
-    ap.netmapEnable = True
+    def highPerformanceProfile(self):
+        pass
+        # self.setNetMap(self.aP)
+        # self.switchProfileWithNetmap(self.aP)
+        # self.classifierProfile(self.aP)
+        # self.fwdProfile(self.aP)
+        # self.fwProfile(self.aP)
+        # self.monitorProfile(self.aP)
+        # self.lbProfile(self.aP)
 
-def setKernelNIC(ap):
-    ap.multiplierRange = range(1,11,1)
-    ap.xticklabels = range(1, 11, 1)
-    ap.tcpreplayInterface ="enp4s0"
-    ap.netmapEnable = False
+    def lowPerformanceProfile(self):
+        self.setKernelNIC(self.aP)
+        self.natProfile(self.aP)
+        # self.vpnProfile(self.aP)
 
-def switchProfileWithNetmap(ap):
-    ap.startSwitchProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+    def setNetMap(self, aP):
+        self.aP.multiplierRange = [
+            40000.0,
+            100000.0,
+            150000.0,
+            170000.0,
+            178000.0,
+            181000.0,
+            184000.0,
+            187000.0,
+            190000.0,
+            200000.0
+        ]
 
-def classifierProfile(ap):
-    ap.startClassifierProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+        self.aP.xticklabels = range(10, 110, 10)
+        self.aP.tcpreplayInterface ="enp4s0"
+        self.aP.netmapEnable = True
 
-def fwdProfile(ap):
-    ap.startFWDProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+    def setKernelNIC(self, aP):
+        self.aP.multiplierRange = range(1,11,1)
+        self.aP.xticklabels = range(1, 11, 1)
+        self.aP.tcpreplayInterface ="enp4s0"
+        self.aP.netmapEnable = False
 
-def fwProfile(ap):
-    ap.startFWProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+    def switchProfileWithNetmap(self, aP):
+        self.aP.startSwitchProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
 
-def monitorProfile(ap):
-    ap.startMonitorProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+    def classifierProfile(self, aP):
+        self.aP.startClassifierProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
 
-def lbProfile(ap):
-    ap.startLBProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+    def fwdProfile(self, aP):
+        self.aP.startFWDProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
 
-def natProfile(ap):
-    ap.startNATProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+    def fwProfile(self, aP):
+        self.aP.startFWProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
 
-def vpnProfile(ap):
-    ap.startVPNProfiling(latPerfInterface="eno2")
-    ap.startProfileAnalysis()
-    ap.drawSwitchStatistic()
+    def monitorProfile(self, aP):
+        self.aP.startMonitorProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
+
+    def lbProfile(self, aP):
+        self.aP.startLBProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
+
+    def natProfile(self, aP):
+        self.aP.startNATProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
+
+    def vpnProfile(self, aP):
+        self.aP.startVPNProfiling(latPerfInterface="eno2")
+        self.aP.startProfileAnalysis()
+        self.aP.drawSwitchStatistic()
+
 
 if __name__ == "__main__":
-    ap = AutoProfiler()
-
-    # setNetMap(ap)
-    # switchProfileWithNetmap(ap)
-    # classifierProfile(ap)
-    # fwdProfile(ap)
-    # fwProfile(ap)
-    # monitorProfile(ap)
-    # lbProfile(ap)
-
-    setKernelNIC(ap)
-    natProfile(ap)
-    # vpnProfile(ap)
+    p = Profiler()
+    p.highPerformanceProfile()
+    # p.lowPerformanceProfile()

@@ -22,7 +22,7 @@ latPerft sends traffic based on packet template
 ```
 
 * use pktTemplateGen to generate packet template, e.g. generate a packet with IP-in-IP tunnel, etc.
-* Cautions: latPerf sets outter ip header's TOS to 0x03 to distinct measurement packet from background traffic.
+* Cautions: latPerf sets outter ip header's TOS to 0x18 to distinct measurement packet from background traffic.
 
 ## Example
 ```
@@ -75,3 +75,12 @@ Error
 # BUG LIST
 
 # TODO LIST
+* add tcpreplay's pcap python scripts
+    * rewrite function
+        * modify src/dst mac
+        * modify dst ip address in sequence
+            * input: pcap is 100Mbps, N flows, each with X Mbps
+            * output: the multiplier number (cautions: not linear)
+    * multi-tcpreplay instance
+        * same pcap file for N process, each process send 1/N traffic
+        * use taskset
